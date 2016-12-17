@@ -32,6 +32,9 @@ function Box:update(dt)
 end
 
 function Box:checkEvents()
+	local red = 1
+	local green = 255
+	local blue = 150
 	for _, event in ipairs(handler.events) do
 		if event.tag == "Collision_Event" then
 			
@@ -60,7 +63,13 @@ function Box:move(dt)
 end
 
 function Box:collide(other, delta)
-	self:kill()
+	local red = 1
+	local green = 255
+	local blue = 150
+	red = red + 1
+	green = green - 1
+	blue = blue + 1
+	self.color = {r = red, g = green, b = blue}
 end
 
 function Box:draw()
