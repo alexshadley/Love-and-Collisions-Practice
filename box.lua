@@ -27,13 +27,24 @@ function Box:update(dt)
 end
 
 function Box:checkEvents()
+	local red = 1
+	local green = 255
+	local blue = 150
 	for _, event in ipairs(handler.events) do
 		if event.tag == "Collision_Event" then
 			
 			if event.object1 == self then
 				self:collide(event.object2, event.delta)
+				red = red + 1
+				green = green - 1
+				blue = blue + 1
+				self.color = {r = red, g = green, b = blue}
 			elseif event.object2 == self then
 				self:collide(event.object1, event.delta)
+				red = red + 1
+				green = green - 1
+				blue = blue - 1
+				self.color = {r = red, g = green, b = blue}
 			end
 		end
 	end
