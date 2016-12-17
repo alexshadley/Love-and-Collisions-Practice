@@ -41,7 +41,7 @@ end
 
 function Box:move(dt)
 	if self.position.y > love.graphics.getHeight() - (self.dimensions.y / 2) then -- bounce off bottom of screen
-		self.velocity.y = self.velocity.y * -.95
+		self.velocity.y = math.abs(self.velocity.y) * -.95 -- absolute value to make sure the box is allways directed upwards
 	end
 	
 	if self.position.x < self.dimensions.x / 2 or self.position.x > love.graphics.getWidth() - self.dimensions.x / 2 then -- bounce off left and right screen edges
@@ -54,7 +54,7 @@ function Box:move(dt)
 	self.position.y = self.position.y + (self.velocity.y * dt)
 end
 
-function Box:collide(other, dx, dy)
+function Box:collide(other, delta)
 	self.color = {r = 150, g = 255, b = 150}
 end
 
