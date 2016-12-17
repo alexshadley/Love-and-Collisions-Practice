@@ -35,16 +35,8 @@ function Box:checkEvents()
 			
 			if event.object1 == self then
 				self:collide(event.object2, event.delta)
-				red = red + 1
-				green = green - 1
-				blue = blue + 1
-				self.color = {r = red, g = green, b = blue}
 			elseif event.object2 == self then
 				self:collide(event.object1, event.delta)
-				red = red + 1
-				green = green - 1
-				blue = blue - 1
-				self.color = {r = red, g = green, b = blue}
 			end
 		end
 	end
@@ -66,7 +58,13 @@ function Box:move(dt)
 end
 
 function Box:collide(other, delta)
-	self.color = {r = 150, g = 255, b = 150}
+	local red = 1
+	local green = 255
+	local blue = 150
+	red = red + 1
+	green = green - 1
+	blue = blue + 1
+	self.color = {r = red, g = green, b = blue}
 end
 
 function Box:draw()
