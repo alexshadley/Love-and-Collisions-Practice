@@ -9,3 +9,7 @@ function Object:isOfSet(set)
 	
 	return false
 end
+
+function Object:isKill()
+	return false
+end

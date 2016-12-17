@@ -11,15 +11,12 @@ function CollisionEvent:new(object1, object2, delta)
 	o.tag = "Collision_Event"
 	o.birthday = step
 	o.lifespan = 1
-	o.isKill = 0
 	
 	return o
 end
 
-function CollisionEvent:update()
-	if self.lifespan >= step - self.birthday then -- if you're too old then die
-		self.isKill = true
-	end
+function CollisionEvent:isKill()
+	return self.lifespan <= step - self.birthday -- if you're too old then die
 end
 
 function CollisionEvent:output()

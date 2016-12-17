@@ -17,13 +17,18 @@ function Box:new(xIn, yIn, widthIn, heightIn)
 	o.collider = HC.rectangle(o.position.x, o.position.y, o.dimensions.x, o.dimensions.y)
 	o.collider.parent = o -- this line is a little funky.  The collider object needs a reference back to its parent object so that we can interact with it directly
 	
+	o.dead = false
+	
 	return o
 end
 
 function Box:update(dt)
 	self:checkEvents()
-	self:move(dt)
-	self.collider:moveTo(self.position.x, self.position.y)
+
+	if not self.dead then
+		self:move(dt)
+		self.collider:moveTo(self.position.x, self.position.y)
+	end
 end
 
 function Box:checkEvents()
@@ -55,10 +60,19 @@ function Box:move(dt)
 end
 
 function Box:collide(other, delta)
-	self.color = {r = 150, g = 255, b = 150}
+	self:kill()
 end
 
 function Box:draw()
 	love.graphics.setColor(self.color.r, self.color.g, self.color.b)
 	love.graphics.rectangle("fill", self.position.x - self.dimensions.x / 2, self.position.y - self.dimensions.y / 2, self.dimensions.x, self.dimensions.y)
+end
+
+function Box:kill()
+	self.dead = true
+	HC.remove(self.collider)
+end
+
+function Box:isKill()
+	return self.dead
 end
