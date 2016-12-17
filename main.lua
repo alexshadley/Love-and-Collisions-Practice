@@ -11,8 +11,8 @@ function love.load()
 	
 	colliders = {"Box"}
 	
-	box1 = Box:new(100, 100, 50, 50)
-	box2 = Box:new(100, 300, 50, 50)
+	box1 = Box:new(100, 100, 150, 50)
+	box2 = Box:new(100, 300, 50, 250)
 	table.insert(actors, box1)
 	table.insert(actors, box2)
 end
